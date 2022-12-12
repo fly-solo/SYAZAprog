@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/static/stylesheet/style.css" type="text/css" />
+    <!-- ✅ load jQuery ✅ -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- ✅ load DataTables ✅ -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"
+      integrity="sha512-BkpSL20WETFylMrcirBahHfSnY++H2O1W+UnEEO4yNIl+jI2+zowyoGJpbtk6bx97fBXf++WJHSSK2MV4ghPcg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </head>
+
+
+
+<body>
+   <!-- Основной блок сайта -->
+    <div id="basic">
+<!--шапка сайта-->
+		<div id="head-site">
+			<a href="#"><img src="/static/images/{{imgs[0]}}" width="100" alt="{{title}}" title="{{title}}" /></a>
+		</div>
+		  <!-- Верхнее меню сайта -->
+        <div id="menu-top">
+        <div class="bg-1">
+            <ul>
+            <li><a href="/">Начальная</a></li>
+            <li><a href="/Main">Главная</a></li>
+            <li><a href="/AboutUS">О разработчиках</a></li>
+            </ul>
+        </div>
+        <div class="bg-2"></div>
+			<div class="block-pod-menu"></div>
+        </div>
+		<br />
+		<br />
+		 <p style="font-weight:bold;font-family:sans-serif; margin-top: 60px;font-size: 17px;" > На этой странице вы можете увидеть курсы обмена иностранных валют.(Это полезно, например, для анализа временных рядов валютных курсов) </p>
+
+        <div align="right" >
+			<input type="text" name="search" id="search" class="search" placeholder="search" />
+			<br/>
+			<span name="myspan" id="myspan" hidden>Ничего не найдено.Возможно вы пишете на русском языке или допустили ошибку в слове.</span>
+        </div>
+        <br />
+		<br />
+        <style>
+        .clickable{
+            cursor:pointer;
+            background:#b69eff;
+        }
+        </style>
+
+		<div class="myInput">
+			<input type="text" id="myInput"  placeholder="Выберите количество комнат:">
+		</div>
+		<div class="div1">
+		<a><input type="checkbox" id="cb1" name="a" value="1" onchange="myFunction()" checked> 1</a>
+		</div>
+		<div class="div1">
+		<a><input type="checkbox" id="cb2" name="a" value="2" onchange="myFunction()" checked> 2</a>
+		</div>
+		<div class="div1">
+		<a><input type="checkbox" id="cb3" name="a" value="3" onchange="myFunction()" checked> 3</a>
+		</div>
+		<div class="div1">
+		<a><input type="checkbox" id="cb4" name="a" value="4" onchange="myFunction()" checked> 4</a>
+		</div>
+		<div class="div1">
+		<a><input type="checkbox" id="cb5" name="a" value="5" onchange="myFunction()" checked> 5</a>
+		</div>
+		<div class="div1">
+		<a><input type="checkbox" id="cb6" name="a" value="6" onchange="myFunction()" checked> 6</a>
+		</div>
+
+        <tr id="range">
+
+        <td > <br /><br />Minimum price:</td>
+        <td><input type="text" id="min" name="min" onkeyup="myFunction()"></td>
+        </tr>
+        <tr>
+        <td>Maximum price:</td>
+        <td><input type="text" id="max" name="max" onkeyup="myFunction()" ></td>
+        </tr>
+
+		<table id = "employee_table" border="1" class="table table-bordered">
+			<thead class="header" >
+				<th class="num">id</th>
+				<th class="text">Страна/Валюта</th>
+				<th class="num">Валюта</th>
+				<th class="num">Цена</th>
+				<th class="num">Дата</th>
+
+			</thead>
+			{% for row in processed_files %}
+            <tbody id="tbody">
+				<tr >
+					<td>{{row[0]}}</td><td>{{row[1]}}</td><td>{{row[2]}}</td><td>{{row[3]}}</td><td>{{row[4]}}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	
+	<script>
+	function myFunction() {
+		var input, min, max, table, tr, td, i, txtValue, cbFilter="", td2, BHKValue;
+		//Добавление чекбоксов
+		const checkBoxes = ["cb1", "cb2", "cb3", "cb4", "cb5", "cb6"]
+		for(let i=0; i<checkBoxes.length;i++){
+			input = document.getElementById(checkBoxes[i]);
+			if (input.checked)
+				cbFilter = cbFilter + input.value;
+		}
+		//Добавление min и max
+		input = document.getElementById("min");
+		min = Number(input.value);
+		input = document.getElementById("max");
+		max = Number(input.value);
+		//Проверка min и max
+		if (min == ""){
+			min = 0;
+		}
+		if (max == ""){
+			max = Number.POSITIVE_INFINITY;
+		}
+		//Таблица
+		table = document.getElementById("employee_table");
+		tr = table.getElementsByTagName("tr");
+		//Обход таблицы
+		for (i = 0; i < tr.length; i++) {
+			td = tr[i].getElementsByTagName("td")[3];
+			td2 = tr[i].getElementsByTagName("td")[2];
+			if (td) {
+			txtValue = Number(td.textContent || td.innerText);
+			BHKValue = td2.textContent || td2.innerText
+				if ((txtValue >= min) && (txtValue <= max) && cbFilter.includes(BHKValue)) {
+					tr[i].style.display = "";
+				} else {
+					tr[i].style.display = "none";
+				}
+			}
+		}
+	}
+	</script>
+
+    <script>
+    //   Скрипт сортировки по возрастанию при нажатии на заголовок
+        type="text/javascript">
+$(document).ready(function(){
+    $("th").each(function(column){
+        $(this).hover(function(){
+            $(this).data("type",$(this).attr("class"));
+            $(this).addClass("clickable");
+
+        },function(){
+            $(this).removeClass("clickable");
+        });
+        $(this).click(function(){
+            var type=$(this).data("type");
+            var records = $("#employee_table").find("#tbody > tr");
+            records.sort(function(a,b){
+                var value1=$(a).children("td").eq(column).text();
+                var value2=$(b).children("td").eq(column).text();
+                if(type == "num" )
+                {
+                    value1 *=1;
+                    value2*=1;
+                }
+                return (value1 < value2) ? -1 : (value1 > value2 ? 1 : 0)
+            });
+            $.each(records,function(index,row){
+                $("#tbody").append(row);
+            });
+        });
+    });
+});
+</script>
+	 <script>
+	 //Скрипт для фильтрации = поисковик по всей таблице
+      $(document).ready(function(){
+           $('#search').keyup(function(){
+                search_table($(this).val());
+           });
+           function search_table(value){
+           var count_string = 0;
+                $('#tbody tr  ').each(function(){
+                     var found = 'false';
+
+                     $(this).each(function(){
+                          if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >-1)
+                          {
+                               found = 'true';
+                          }
+                     });
+                     if(found == 'true')
+                     {
+                          $(this).show();
+						  count_string++;
+                     }
+                     else
+                     {
+                          $(this).hide();
+
+                     }
+
+
+                });
+                let element = document.getElementById("myspan");
+     			let hidden = element.getAttribute("hidden");
+				if (count_string == 0){
+	<!--				alert('Введите текст корректно!');-->
+						element.removeAttribute("hidden");
+				}
+				else{
+					element.setAttribute("hidden", "hidden");
+				}
+           }
+
+      });
+ </script>
+        
+
+	</div>
+</body>
+</html>

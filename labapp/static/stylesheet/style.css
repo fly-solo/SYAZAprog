@@ -1,0 +1,176 @@
+/*Каркас сайта*/
+body {
+	padding:0px; 
+	margin:0; 
+	background:#b69eff; //фон
+	font-size:14px; 
+	font-family:Arial, Sans-serif;
+	}
+#basic {
+	width:960px;
+	min-height:900px;
+	margin:0 auto;
+	padding:20px 20px 20px 20px;
+	background:#fff;}
+img {
+	border:0;
+	}
+a {
+	color:#b69eff;
+	}
+a:hover {
+	text-decoration:none;
+	}
+li.none-bg {
+	background:none!important;
+	}
+/*Верхнее меню сайта*/
+#top-menu {
+	width:960px;
+	height:74px;
+
+	}
+.bg-1 {
+	width:950px;
+	height:64px;
+	background:#b69eff url(images/m1.png) repeat-x;
+	padding:0 0 0 10px;
+	margin:center;
+	}
+.bg-2 {
+	width:940px;
+	height:8px;
+	background:#dbc3db;/
+	margin:center;
+
+	}
+.bg-1 ul {
+	margin:5;
+	padding:0; 
+	list-style:none;
+	}
+.bg-1 ul li {
+	float:left;
+	background:url(images/m2.png) no-repeat right center;
+	padding:0 50px 0 0;
+	}
+.bg-1 ul li a {
+	display:block; 
+	height:40px; 
+	padding:24px 27px 0 27px;
+	color:#0a0a0a;
+	text-decoration:none;
+	text-transform:uppercase;
+	}
+.bg-1 ul li a:hover {
+	color:#fff; 
+	background:#dbc3db;
+	}
+/*Левое меню и Контент*/
+#content {
+	width:960px; 
+	padding:20px 10 10 10;
+	margin-top:100px;
+	
+	}
+.right { 
+	float:right;
+	width:900px; 
+	padding:10 10 10 20px;
+	text-align:center;
+	margin-top: 30px;
+	
+	}
+.right h1 {
+	font:Comic Sans MS;
+	text-transform:uppercase;
+	color:#0a0a0a;
+	font-weight:normal; 
+	margin-top:70px;
+	
+	}
+
+
+li.none-bg {background:none!important;}
+/*Иконки соц сетей*/
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+.social a {
+	display: inline;
+    text-align: center;
+    width: 38px;
+    height: 38px;
+    float: right;
+    background: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15), inset 0 0 50px rgba(0,0,0,0.1);
+    border-radius: 30px;
+    margin: 0 10px 10px 0;
+    padding: 6px;
+    color: #000;
+	font-size: 18px !important;
+}
+.github a:hover {background: #191919; color: #fff;}
+
+.vk a:hover {background: #5d84ae; color: #fff;}
+#myInput {
+  background-image: url('/css/searchicon.png'); /* Добавить значок поиска для ввода */
+  background-position: 10px 12px; /* Расположите значок поиска */
+  background-repeat: no-repeat; /* Не повторяйте изображение значка */
+  width: 25%; /* Полная ширина */
+  font-size: 12px; /* Увеличить размер шрифта */
+  padding: 5px 10px 10px 10px; /* Добавить немного отступов */
+  border: 1px solid #ddd; /* Добавить серую границу */
+  margin-left:0%; /* Добавить некоторое пространство под входом */
+  margin: 0 10px 10px 0;
+
+}
+
+#employee_table {
+  border-collapse: collapse; /* Свернуть границы */
+  width: 100%; /* Полная ширина */
+  border: 1px solid #ddd; /* Добавить серую границу */
+  font-size: 14px; /* Увеличить размер шрифта */
+}
+
+#employee_table th, #employee_table td {
+  text-align: left; /* Выравнивание текста по левому краю */
+  padding: 8px; /* Добавить отступ */
+}
+
+#employee_table tr {
+  /* Добавить нижнюю границу для всех строк таблицы */
+  border-bottom: 1px solid #ddd;
+}
+
+#employee_table tr.header, #employee_table tr:hover {
+  /* Добавить серый цвет фона для заголовка таблицы и при наведении курсора мыши */
+  background-color: #f1f1f1;
+}
+
+.div1
+{
+	height: 20px;
+	/*display: inline-block;*/
+	float: left;
+	width: 15%;
+}
+
+
+
+.apply {
+  border-color: #bf2626;
+  color: #fff;
+  background: #bf2626
+}
+
+.apply:active {
+  background: #800000;
+}
+
+.apply:hover {
+  background: #800000;
+}
+
+.apply a {
+	color: #8f8f8f;
+}
