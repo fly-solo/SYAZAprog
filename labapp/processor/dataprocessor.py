@@ -40,10 +40,12 @@ class DataProcessor(ABC):
         т.к. сортировку можно сделать при выполнении SQL-запроса типа SELECT ... ORDER BY...
     """
     def sort_data_by_col(self, df, colname, asc) -> pandas.DataFrame:
-            del df['Tenant_Preferred']
-            del df['Bathroom']
+            del df['id']
             return df.sort_values(by=colname, ascending=asc)
 
+    def delete_id(self, df) -> pandas.DataFrame:
+        del df['id']
+        return df
     # Абстрактный метод для вывоа результата на экран
     @abstractmethod
     def print_result(self):
@@ -72,7 +74,7 @@ class CsvDataProcessor(DataProcessor):
             self._dataset = pandas.read_csv(self._datasource, sep=self.separator, header='infer', names=None, encoding="utf-8")
             # Читаем имена колонок из файла данных
             col_names = self._dataset.columns
-            self._dataset.dropna(inplace= True)
+            self._dataset.dropna(inplace=True)
             # Если количество считанных колонок < 2 возвращаем false
             if len(col_names) < 2:
                 return False
@@ -83,7 +85,7 @@ class CsvDataProcessor(DataProcessor):
 
     #    Сортируем данные по значениям колонки "LKG" и сохраняем результат в атрибуте result
     def run(self):
-        self.result = self.sort_data_by_col(self._dataset, "Posted_On", False)
+        self.result = self.delete_id(self._dataset)
 
     def print_result(self):
         print(f'Running CSV-file processor!\n', self.result)
@@ -104,7 +106,7 @@ class TxtDataProcessor(DataProcessor):
             return False
 
     def run(self):
-        self.result = self.sort_data_by_col(self._dataset, "Posted_On", False)
+        self.result = self.delete_id(self._dataset)
 
     def print_result(self):
         print(f'Running TXT-file processor!\n', self.result)
@@ -114,7 +116,7 @@ class NoneDataProcessor(DataProcessor):
         return True
     def run(self):
         # self._dataset = pandas.DataFrame(columns=['year', '', 'C'])
-        self.result = pandas.DataFrame(columns=['id', 'Posted_On', 'BHK', 'Rent', 'Size_', 'Floor_', 'Area_Locality', 'City', 'Furnishing', 'Point_of_Contact'])
+        self.result = pandas.DataFrame(columns=['id', 'CountryCurrency', 'currency', 'value', 'Posted_On'])
     def print_result(self):
         print(f'Running None-file processor!\n', self.result)
 

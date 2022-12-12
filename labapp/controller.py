@@ -15,24 +15,12 @@ navmenu = [
         'addr': '/'
     },
     {
-        'name': 'ABOUT US',
-        'addr': '#'
+        'name': 'AboutUS',
+        'addr': '/AboutUS'
     },
     {
-        'name': 'SERVICES',
-        'addr': '#'
-    },
-    {
-        'name': 'PROJECTS',
-        'addr': '#'
-    },
-    {
-        'name': 'MEMBERS',
-        'addr': '#'
-    },
-    {
-        'name': 'CONTACT',
-        'addr': '/contact'
+        'name': 'Main',
+        'addr': '/Main'
     },
 ]
 
